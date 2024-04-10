@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class LogicScript : MonoBehaviour
+{
+    public int playerScore; //meatball count
+    public Text scoretext; // current placeholder for U.I, it's a drag n' drop on unity
+    public GameObject gameOverScreen; // also a drag n' drop for the game over screen
+    public bool ALIVE = true; //an idea to see if you're alive, although I'm still unsure what'll kill you. 
+
+    //to get this script and the variables, you can use "logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();" :] 
+    
+    [ContextMenu("Increase Score")] //public "command" (I'm not sure what this is properly called tbh) for adding to score
+    public void addScore(int scoreToAdd)
+    {
+        playerScore = playerScore + scoreToAdd;
+        
+    }
+
+    public void resetGame()    //"command" to reset 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void gameOver()  // looks for the drag n' drop'd game over screen, and turns it on
+    {
+        gameOverScreen.SetActive(true);
+    }
+    // most of my stuff is gonna end up being public for obvious reasons, so feel free to call them, I won't change names. 
+
+}
