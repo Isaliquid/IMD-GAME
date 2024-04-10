@@ -10,4 +10,4 @@ and there you go, you've made a file.
 Then put the latest version in the folder, and move the older version to its own little spot.
 (btw, to make a folder, just had a "/" at the end of a file name
 
-have fun
+It's then going to ask you what you changed, and to title the change. Add as much or as little as you think is needed. 
