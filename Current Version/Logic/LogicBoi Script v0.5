@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//Make sure to attach this to an empty game object, and also add tag "LOGIC" 
-
 public class LogicScript : MonoBehaviour
 {
     public int playerScore; //meatball count
@@ -14,12 +12,20 @@ public class LogicScript : MonoBehaviour
     public bool ALIVE = true; //an idea to see if you're alive, although I'm still unsure what'll kill you. 
 
     //to get this script and the variables, you can use "logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();" :] 
-    
-    [ContextMenu("Increase Score")] //public "command" (I'm not sure what this is properly called tbh) for adding to score
+
+    void Start()
+    {
+
+        Debug.Log("ALIVE");
+        gameOverScreen.SetActive(false);
+
+    }
+
+    //public "command" (I'm not sure what this is properly called tbh) for adding to score
     public void addScore(int scoreToAdd)
     {
         playerScore = playerScore + scoreToAdd;
-        
+
     }
 
     public void resetGame()    //"command" to reset 
@@ -27,10 +33,32 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    [ContextMenu("Increase Score")] //testing to add
+    private void ScoreONE()
+    {
+        playerScore = playerScore + 1;
+    }
+
+    [ContextMenu("DIE")]  //testing to die 
+    private void OOF()
+    {
+        ALIVE = false;
+    }
+
+   
+
     public void gameOver()  // looks for the drag n' drop'd game over screen, and turns it on
     {
         gameOverScreen.SetActive(true);
     }
     // most of my stuff is gonna end up being public for obvious reasons, so feel free to call them, I won't change names. 
 
+    void Update() //backup kill switch
+    {
+        if (ALIVE == false)  
+        {
+            gameOver();
+        }
+    }
+    
 }
